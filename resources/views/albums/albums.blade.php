@@ -1,5 +1,9 @@
 @extends('base.base')
 
+@section('document_ready')
+
+@stop
+
 @section('content')
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">

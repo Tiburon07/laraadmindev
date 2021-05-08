@@ -36,9 +36,9 @@
     @show
 
     document.addEventListener("DOMContentLoaded", function(event) {
-        @section('document_ready')
-        @show
+        @section('document_ready') @show
     });
+
 </script>
 <div class="wrapper">
     @include('base.partials.preloader')

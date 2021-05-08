@@ -23,9 +23,14 @@
             </a>
         </li>
         <li class="nav-item">
-            <a title="Logout" class="nav-link" href="/auth/logout" role="button">
+            <a title="Logout" class="nav-link" href="#"
+               onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+               role="button">
                 <i class="fas fa-sign-out-alt"></i>
             </a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none">
+                {{csrf_field()}}
+            </form>
         </li>
     </ul>
 </nav>
