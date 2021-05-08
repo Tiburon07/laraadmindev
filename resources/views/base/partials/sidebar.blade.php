@@ -35,6 +35,12 @@
                         </li>
                     </ul>
                 </li>
+                <li class="nav-item">
+                    <a href="/albums" class="nav-link">
+                        <i class="nav-icon fas fa-images"></i>
+                        <p>Album</p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

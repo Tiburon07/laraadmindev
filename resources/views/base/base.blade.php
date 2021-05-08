@@ -29,7 +29,7 @@
     @section('extra_css')
     @show
 </head>
-<body class="hold-transition text-sm sidebar-mini layout-fixed">
+<body class="hold-transition text-sm sidebar-mini layout-navbar-fixed layout-fixed layout-footer-fixed">
 <script>
     @section('global_vars')
         let G_baseUrl = 'http://localhost:8000/';
