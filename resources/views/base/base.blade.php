@@ -29,16 +29,16 @@
     @section('extra_css')
     @show
 </head>
-<body class="hold-transition text-sm sidebar-mini layout-fixed">
+<body class="hold-transition text-sm sidebar-mini layout-navbar-fixed layout-fixed layout-footer-fixed">
 <script>
     @section('global_vars')
         let G_baseUrl = 'http://localhost:8000/';
     @show
 
     document.addEventListener("DOMContentLoaded", function(event) {
-        @section('document_ready')
-        @show
+        @section('document_ready') @show
     });
+
 </script>
 <div class="wrapper">
     @include('base.partials.preloader')

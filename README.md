@@ -60,3 +60,11 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+##cli Artisan
+php artisan make:migration create_albums_table --create 02_albums
+php artisan db:seed --class=PhotoSeeder
+php artisan make:controller AlbumsController -m Album -r
+php artisan make:model Photo -f -s
+
+

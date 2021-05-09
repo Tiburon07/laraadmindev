@@ -14,7 +14,7 @@
                 <img src="{{asset('dist/img/avatar4.png')}}" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block"></a>
+                <a href="#" class="d-block">{{ Auth::user()->name }}</a>
             </div>
         </div>
 
@@ -34,6 +34,12 @@
                             </a>
                         </li>
                     </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="/albums" class="nav-link">
+                        <i class="nav-icon fas fa-images"></i>
+                        <p>Album</p>
+                    </a>
                 </li>
             </ul>
         </nav>
