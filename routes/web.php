@@ -13,7 +13,7 @@ require __DIR__.'/auth.php';
 
 //HOME
 Route::group(
-    ['middleware' => 'auth','prefix' => 'home'],
+    ['middleware' => 'auth','prefix' => ''],
     function (){
         Route::get('/', function () { return view('home'); })->name('home');
     }
