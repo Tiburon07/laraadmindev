@@ -66,5 +66,9 @@ php artisan make:migration create_albums_table --create 02_albums
 php artisan db:seed --class=PhotoSeeder
 php artisan make:controller AlbumsController -m Album -r
 php artisan make:model Photo -f -s
+php artisan make:middleware VerifyIsAdmin
+php artisan make:controller AdminUserController resource
+composer require yajra/laravel-datatables-oracle
+
 
 

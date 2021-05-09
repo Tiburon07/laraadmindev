@@ -16,14 +16,15 @@ const Utility = {
   //"dom": 'l<"H"Rs>t<"F"ip>', dom da provare
   getTableConfig: function() {
     return {
-      "dom": '<"top">rt<"bottom"lp>',
+      //"dom": '<"top">rt<"bottom"lp>',
+      "dom": 'lf<"H"Rs>t<"bottom"p>',
       "searching": true,
       "ordering": true,
       "info": true,
       "lengthChange": false,
       "pagingType": "full_numbers",
       "language": {
-        "search": "Cerca: ",
+        "search": "Cerca nome: ",
         "lengthMenu": " _MENU_ records per pagina",
         "zeroRecords": "Nessun elemento trovato",
         "info": "Mostra pagina _PAGE_ di _PAGES_",
@@ -1087,7 +1088,7 @@ const Utility = {
       newList[i] = (selectList[i].value);
     }
     select.empty(); //Svuoto la select prima di ricaricarla
-    newList.sort(); //ordino la lista e ricarico la select 
+    newList.sort(); //ordino la lista e ricarico la select
     for (let j = 0; j < newList.length; j++) {
       select.append(new Option(newList[j], newList[j]))
     }
@@ -1326,7 +1327,7 @@ const Utility = {
     for (let i = 0; i < idlength; i++) {
       uniqid += charstoformid[Math.floor(Math.random() * charstoformid.length)];
     }
-    // one last step is to check if this ID is already taken by an element before 
+    // one last step is to check if this ID is already taken by an element before
     if ($("#" + uniqid).length == 0)
       return uniqid;
     else

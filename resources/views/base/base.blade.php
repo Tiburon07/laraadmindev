@@ -29,10 +29,11 @@
     @section('extra_css')
     @show
 </head>
-<body class="hold-transition text-sm sidebar-mini layout-navbar-fixed layout-fixed layout-footer-fixed">
+<body class="hold-transition sidebar-mini layout-navbar-fixed layout-fixed layout-footer-fixed">
 <script>
+
     @section('global_vars')
-        let G_baseUrl = 'http://localhost:8000/';
+        let G_baseUrl = '{{url('/')}}';
     @show
 
     document.addEventListener("DOMContentLoaded", function(event) {

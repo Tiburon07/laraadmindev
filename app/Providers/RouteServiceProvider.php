@@ -17,7 +17,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/';
+    public const HOME = '/home';
 
     /**
      * The controller namespace for the application.
@@ -47,14 +47,6 @@ class RouteServiceProvider extends ServiceProvider
                 ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
         });
-
-//        Route::prefix('admin')
-//            ->namespace($this->namespace)
-//            ->group(base_path('routes/admin.php'));
-//
-//        Route::prefix('page')
-//            ->namespace($this->namespace)
-//            ->group(base_path('routes/page.php'));
     }
 
     /**
@@ -68,4 +60,5 @@ class RouteServiceProvider extends ServiceProvider
             return Limit::perMinute(60)->by(optional($request->user())->id ?: $request->ip());
         });
     }
+
 }
