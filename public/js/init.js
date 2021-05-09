@@ -1,3 +1,3 @@
 admindev = {};
-admindev.coni = {};
+admindev.attivita = {};
 admindev.admin = {};

@@ -85,8 +85,8 @@
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('dist/js/demo.js')}}"></script>
 <!-- Init -->
-<script src="{{asset('js/site/js/init.js')}}"></script>
-<script src="{{asset('js/site/js/Utility.js')}}"></script>
+<script src="{{asset('js/init.js')}}"></script>
+<script src="{{asset('js/Utility.js')}}"></script>
 @section('extra_js')
 @show
 </body>

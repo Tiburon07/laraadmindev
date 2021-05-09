@@ -1,9 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use \App\Http\Controllers\AlbumsController;
-use \App\Http\Controllers\AdminController;
-use \App\Http\Controllers\admin\AdminUserController;
+use App\Http\Controllers\AlbumsController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\admin\AdminUserController;
+use App\Http\Controllers\AttivitaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,16 +16,7 @@ require __DIR__.'/auth.php';
 Route::group(
     ['middleware' => 'auth','prefix' => ''],
     function (){
-        Route::get('/', function () { return view('home'); })->name('home');
-    }
-);
-
-//ALBUM
-Route::group(
-    ['middleware' => 'auth','prefix' => 'albums'],
-    function (){
-        Route::get('/', [AlbumsController::class, 'index'])->name('albums');
-        Route::get('/{id}/delete', [AlbumsController::class, 'delete']);
+        Route::get('/', function(){ return view('home'); })->name('home');
     }
 );
 
@@ -36,3 +28,22 @@ Route::group(
         Route::get('/getUsers/{start}/{length}/{col}/{dir}/{search}', [AdminUserController::class, 'getUsers']);
     }
 );
+
+//ATTIVITA
+Route::group(
+    ['middleware' => 'auth','prefix' => 'attivita'],
+    function (){
+        Route::get('/', [AttivitaController::class, 'index'])->name('attivita-list');
+        Route::get('/getAttivita/{start}/{length}/{col}/{dir}/{search}', [AttivitaController::class, 'getAttivita']);
+    }
+);
+
+//ALBUM
+Route::group(
+    ['middleware' => 'auth','prefix' => 'albums'],
+    function (){
+        Route::get('/', [AlbumsController::class, 'index'])->name('album-list');
+        Route::get('/{id}/delete', [AlbumsController::class, 'delete']);
+    }
+);
+

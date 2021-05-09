@@ -28,21 +28,13 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-table"></i>
-                        <p>Coni <i class="fas fa-angle-left right"></i></p>
+                    <a href="{{route('attivita-list')}}" class="nav-link">
+                        <i class="nav-icon fas fa-chart-line"></i>
+                        <p>Attivita</p>
                     </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="/coni/attivita" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Attività</p>
-                            </a>
-                        </li>
-                    </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="/albums" class="nav-link">
+                    <a href="{{route('album-list')}}" class="nav-link">
                         <i class="nav-icon fas fa-images"></i>
                         <p>Album</p>
                     </a>

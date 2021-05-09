@@ -62,6 +62,7 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
 ##cli Artisan
+php artisan migrate
 php artisan make:migration create_albums_table --create 02_albums
 php artisan db:seed --class=PhotoSeeder
 php artisan make:controller AlbumsController -m Album -r
@@ -69,6 +70,8 @@ php artisan make:model Photo -f -s
 php artisan make:middleware VerifyIsAdmin
 php artisan make:controller AdminUserController resource
 composer require yajra/laravel-datatables-oracle
+php artisan migrate --path=/database/migrations/2021_05_09_180821_create_attivita_table.php
+
 
 
 
