@@ -29,7 +29,6 @@
         this._modal.on('hidden.bs.modal', this._onHiddenModalAssegna.bind(this));
         this._btnSalva.on('click', this._onclickBtnSalva.bind(this));
         this._inpTitle.on('keyup', this._onKeyUpInputTitle.bind(this));
-        new CustomEvent('savedAssegna','');
     };
 
     // -- Handler Event
