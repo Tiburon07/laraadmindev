@@ -34,6 +34,8 @@ Route::group(
     ['middleware' => 'auth','prefix' => 'attivita'],
     function (){
         Route::get('/', [AttivitaController::class, 'index'])->name('attivita-list');
+        Route::get('/getFederazioni', [AttivitaController::class, 'getFederazioni']);
+        Route::get('/getUsersAttivita', [AttivitaController::class, 'getUsersAttivita']);
         Route::get('/getAttivita/{start}/{length}/{col}/{dir}/{search}', [AttivitaController::class, 'getAttivita']);
     }
 );
