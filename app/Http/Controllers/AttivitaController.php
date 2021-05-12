@@ -44,14 +44,19 @@ class AttivitaController extends Controller
         return json_encode($result);
     }
 
+    public function assegna()
+    {
+
+    }
+
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $req)
     {
-        //
+        dd($req->getContent());
     }
 
     /**

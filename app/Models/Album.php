@@ -7,6 +7,31 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Auth;
 
+/**
+ * App\Models\Album
+ *
+ * @property int $id
+ * @property string $album_name
+ * @property string|null $description
+ * @property int $user_id
+ * @property string $album_thumb
+ * @property string|null $deleted_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Database\Factories\AlbumFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|Album newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Album newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Album query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Album whereAlbumName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Album whereAlbumThumb($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Album whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Album whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Album whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Album whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Album whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Album whereUserId($value)
+ * @mixin \Eloquent
+ */
 class Album extends Model
 {
     use HasFactory;

@@ -1456,5 +1456,23 @@ const Utility = {
     dataTab.recordsFiltered = dataRet.dataCount;
     dataTab.data = dataRet.data;
     callbackDataTable(dataTab);
+  },
+
+  getTask: function(dataTask) {
+    let liTask = $('<li>');
+    liTask.append($('<span class="handle ui-sortable-handle">')
+        .append($('<i class="fa fa-ellipsis-v"></i>'))
+        .append($('<i class="fa fa-ellipsis-v"></i>'))
+        );
+    liTask.append($('<input type="checkbox" value="">'));
+    liTask.append($('<span class="text"></span>').text('Titolo task'));
+    liTask.append($('<small class="label label-info">')
+            .append($('<i class="fa fa-clock-o"></i>').text('1 giorno'))
+        );
+    liTask.append($('<div class="tools">')
+          .append($('<i class="fa fa-edit"></i>'))
+          .append($('<i class="fa fa-trash-o"></i>'))
+        );
+    return liTask
   }
 }

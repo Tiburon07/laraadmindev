@@ -24,7 +24,7 @@
                 <li class="nav-item">
                     <a href="{{route('user-list')}}" class="nav-link">
                         <i class="nav-icon fas fa-user-cog"></i>
-                        <p>Amministrazione</p>
+                        <p>Amministra</p>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -33,12 +33,12 @@
                         <p>Attivita</p>
                     </a>
                 </li>
-  {{--              <li class="nav-item">
+                <li class="nav-item">
                     <a href="{{route('album-list')}}" class="nav-link">
                         <i class="nav-icon fas fa-images"></i>
-                        <p>Album</p>
+                        <p>Galleria</p>
                     </a>
-                </li>--}}
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

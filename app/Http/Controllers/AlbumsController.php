@@ -22,7 +22,12 @@ class AlbumsController extends Controller
 
     public function delete(int $idAlbum){
         $albums = $this->albumModel->deleteAlbum($idAlbum);
-        return redirect()->back();
+        return $albums;//redirect()->back();
+    }
+
+    public function delete2(int $idAlbum){
+        $albums = $this->albumModel->deleteAlbum($idAlbum);
+        return $albums;//redirect()->back();
     }
 
     /**
@@ -54,7 +59,8 @@ class AlbumsController extends Controller
      */
     public function show(Album $album)
     {
-        //
+        $sql = 'SELECT * FROM 02_albums where id = :id';
+        return DB::select($sql, ['album'=>$album]);
     }
 
     /**
@@ -63,9 +69,12 @@ class AlbumsController extends Controller
      * @param  \App\Models\Album  $album
      * @return \Illuminate\Http\Response
      */
-    public function edit(Album $album)
+    public function edit(Request $req)
     {
-        //
+        $id = $req->get('album');
+        $sql = 'SELECT * FROM 02_albums where id = :id';
+        $albumEdit =  DB::selectOne($sql, ['id'=>$id]);
+        return view('albums/edit_album')->withAlbum($albumEdit);
     }
 
     /**
@@ -75,9 +84,15 @@ class AlbumsController extends Controller
      * @param  \App\Models\Album  $album
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Album $album)
+    public function update(Request $req)
     {
-        //
+        $data = $req->only(['album_name', 'album_descr', 'album']);
+        $query = ' UPDATE 02_albums set album_name=:album_name, description=:album_descr where id = :album';
+        $res = DB::update($query, array_values($data));
+        $message = 'Album con id='.$data['album'];
+        $message .= $res ? ' aggiornato ' : ' non aggiornato';
+        session()->flash('message',$message);
+        return redirect()->route('album-edit');
     }
 
     /**

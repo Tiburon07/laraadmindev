@@ -27,13 +27,13 @@
         // -- Eventi
         this._modal.on('shown.bs.modal', this._onShowModalAssegna.bind(this));
         this._modal.on('hidden.bs.modal', this._onHiddenModalAssegna.bind(this));
-        this._btnSalva.on('click', this._onclickBtnSalva.bind(this));
+        this._btnSalva.on('click', this._onclickBtnAssegna.bind(this));
         this._inpTitle.on('keyup', this._onKeyUpInputTitle.bind(this));
     };
 
     // -- Handler Event
-    ns.ModalNewAttivita.prototype._onclickBtnSalva = function(e) {
-        this._modal.dispatchEvent('savedAssegna');
+    ns.ModalNewAttivita.prototype._onclickBtnAssegna = function(e) {
+        console.log('asesegna')
         let invalid = false;
         if(this._inpTitle.val() === "") {
             invalid = true;
@@ -48,7 +48,7 @@
             this._selUser.addClass('is-invalid');
         }
         if(!invalid)
-            this._assegnaAttivitaList();
+            this._assegna();
     };
 
     ns.ModalNewAttivita.prototype._onKeyUpInputTitle = function(e) {
@@ -89,7 +89,7 @@
         for (let i in fsn) this._selFsn.append(new Option(fsn[i].sigla,fsn[i].sigla));
     };
 
-    ns.ModalNewAttivita.prototype._assegnaAttivitaList = function() {
+    ns.ModalNewAttivita.prototype._assegna = function() {
         let dataToSend = {
             title: this._inpTitle.val(),
             descr: this._txtDesc.val(),

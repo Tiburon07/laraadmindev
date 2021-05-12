@@ -27,6 +27,7 @@
     this._btnNewAttivita = $('#attivita_btn_new_attivita');
     this._btnNewTask = $('#attivita_btn_new_task');
     this._btnNewBookmark = $('#attivita_btn_new_bookmark');
+    this._ulTask = $('#attivita_task_ul');
 
     // -- Eventi
     this._btnNewAttivita.on('click', this._onclickBtnNewAttivita.bind(this));
@@ -97,6 +98,19 @@
     //         }
     //     });
     // });
+
+      // jQuery UI sortable for the todo list
+      $('.todo-list').sortable({
+          placeholder: 'sort-highlight',
+          handle: '.handle',
+          forcePlaceholderSize: true,
+          zIndex: 999999,
+          drop: function( ) {
+              debugger;
+              var order = $("#sortable").sortable("serialize", {key:'order[]'});
+              console.log(order);
+          }
+      })
   };
 
   ns.AttivitaList.getInstance = function() {
@@ -110,7 +124,7 @@
   };
 
   ns.AttivitaList.prototype._onclickBtnNewTask = function(e) {
-
+      this._ulTask.append(this._utility.getTask(''));
   };
 
   ns.AttivitaList.prototype._onclickBtnNewBookmark = function(e) {

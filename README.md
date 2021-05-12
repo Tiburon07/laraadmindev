@@ -72,6 +72,9 @@ php artisan make:controller AdminUserController resource
 composer require yajra/laravel-datatables-oracle
 php artisan migrate --path=/database/migrations/2021_05_09_180821_create_attivita_table.php
 
-
+##RUN NODE
+pm2 start ./bin/www
+#text nginx
+systemctl restart nginx
 
 

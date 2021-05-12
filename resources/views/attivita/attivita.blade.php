@@ -56,13 +56,13 @@
                             <div class="card-header">
                                 <h3 class="card-title"><i class="fas fa-tasks"></i> Task</h3>
                                 <div class="card-tools">
-                                    <button type="button" class="btn btn-tool" id="attivita_btn_task" title="Aggiungi Task">
+                                    <button type="button" class="btn btn-tool" id="attivita_btn_new_task" title="Aggiungi Task">
                                         <i class="fas fa-plus"></i>
                                     </button>
                                 </div>
                             </div>
                             <div class="card-body">
-                                <ul class="todo-list" data-widget="todo-list"></ul>
+                                <ul id="attivita_task_ul" class="todo-list" data-widget="todo-list"></ul>
                             </div>
                         </div>
                     </div>
