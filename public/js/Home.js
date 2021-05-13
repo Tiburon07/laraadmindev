@@ -17,12 +17,13 @@
         this._utility = Utility;
         this._inpMes = $('#chat_input_msg');
         this._btnSend = $('#chat_btn_send');
-        this._socket = io('http://167.71.43.30:80');
+        this._socket = io('https://chat-node-server-a7fgw.ondigitalocean.app');
         this._chatContent = $('#chat_content')
 
         this._btnSend.on('click', this._onclickBtnAssegna.bind(this));
         this._socket.on('connection');
         this._socket.on('sendChatToClient', (message) => {
+            console.log(message);
             this._chatContent.append('<div class="direct-chat-msg">\n' +
                                     '    <div class="direct-chat-infos clearfix">\n' +
                                     '        <span class="direct-chat-name float-left">Tibur</span>\n' +
