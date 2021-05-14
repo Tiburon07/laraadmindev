@@ -39,6 +39,12 @@
                         <p>Galleria</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{route('chat')}}" class="nav-link">
+                        <i class="nav-icon fas fa-comments"></i>
+                        <p>Chat</p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

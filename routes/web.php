@@ -5,6 +5,9 @@ use App\Http\Controllers\AlbumsController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\admin\AdminUserController;
 use App\Http\Controllers\AttivitaController;
+use App\Events\Message;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,6 +20,11 @@ Route::group(
     ['middleware' => 'auth','prefix' => ''],
     function (){
         Route::get('/', function(){ return view('home'); })->name('home');
+        Route::get('/chat', function(){ return view('chat'); })->name('chat');
+        Route::post('/send-message', function(Request $request){
+            event(new Message($request->input('username'), $request->input('message')));
+            return ["success" => true];
+        });
     }
 );
 

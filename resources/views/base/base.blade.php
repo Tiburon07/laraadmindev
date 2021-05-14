@@ -52,6 +52,7 @@
     @include('base.partials.control_sidebar')
     @component('components.modal') @endcomponent
 </div>
+<script src="{{asset('js/app.js')}}"></script>
 <!-- jQuery -->
 <script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
 <!-- jQuery UI 1.11.4 -->
@@ -85,7 +86,8 @@
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('dist/js/demo.js')}}"></script>
 {{--Socket.io--}}
-<script src="https://cdn.socket.io/4.0.2/socket.io.min.js" integrity="sha384-Bkt72xz1toXkj/oEiOgkQwWKbvNYxTNWMqdon3ejP6gwq53zSo48nW5xACmeDV0F" crossorigin="anonymous"></script>
+{{--<script src="https://cdn.socket.io/4.0.2/socket.io.min.js" integrity="sha384-Bkt72xz1toXkj/oEiOgkQwWKbvNYxTNWMqdon3ejP6gwq53zSo48nW5xACmeDV0F" crossorigin="anonymous"></script>--}}
+<script src="https://js.pusher.com/7.0/pusher.min.js"></script>
 <!-- Init -->
 <script src="{{asset('js/init.js')}}"></script>
 <script src="{{asset('js/Utility.js')}}"></script>
