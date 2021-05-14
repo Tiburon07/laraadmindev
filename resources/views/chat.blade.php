@@ -12,11 +12,11 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Home</h1>
+                    <h1 class="m-0">Chat</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item active">Home</li>
+                        <li class="breadcrumb-item active">Chat</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -28,7 +28,7 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="card direct-chat direct-chat-primary">
                         <div class="card-header">
                             <h3 class="card-title">Chat</h3>
@@ -40,8 +40,8 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <div id="chat_content" class="direct-chat-messages"></div>
-                            <div class="direct-chat-contacts">
+                            <div id="chat_content" class="direct-chat-messages" style="height: 41rem;"></div>
+                            <div class="direct-chat-contacts" style="height: 41rem;">
                                 <ul class="contacts-list">
                                     <li>
                                         <a href="#">
