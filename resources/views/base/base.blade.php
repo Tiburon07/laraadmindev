@@ -29,7 +29,7 @@
     @section('extra_css')
     @show
 </head>
-<body class="hold-transition sidebar-mini layout-navbar-fixed layout-fixed">
+<body class="hold-transition sidebar-collapse sidebar-mini layout-navbar-fixed layout-fixed">
 <script>
 
     @section('global_vars')

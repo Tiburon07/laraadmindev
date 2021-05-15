@@ -15,19 +15,32 @@ class AlbumsController extends Controller
         $this->albumModel = new Album();
     }
 
-    public function index(Request $req) {
+    public function index3(Request $req) {
         $albums = $this->albumModel->getAlbumsByUser();
         return view('albums/albums',['albums' => $albums]);
     }
 
-    public function delete(int $idAlbum){
-        $albums = $this->albumModel->deleteAlbum($idAlbum);
-        return $albums;//redirect()->back();
+    public function index(Request $req) {
+        $albums = $this->albumModel->getAlbums($req);
+        return view('albums/albums',['albums' => $albums]);
     }
 
-    public function delete2(int $idAlbum){
-        $albums = $this->albumModel->deleteAlbum($idAlbum);
-        return $albums;//redirect()->back();
+    public function delete(Request $req){
+        $id = $req->get('album');
+        $albums = $this->albumModel->deleteAlbum($id);
+        $message = 'Album con id : '.$id;
+        $message .= $albums ? ' eliminato ' : ' non eliminato';
+        session()->flash('message',$message);
+        return redirect()->route('album-list');
+    }
+
+    public function delete2(Request $req){
+        $id = $req->get('album');
+        $albums = $this->albumModel->deleteAlbum($id);
+        $message = 'Album con id : '.$id;
+        $message .= $albums ? ' eliminato ' : ' non eliminato';
+        session()->flash('message',$message);
+        return redirect()->route('album-list');
     }
 
     /**
@@ -35,9 +48,8 @@ class AlbumsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
+    public function create(){
+        return view('albums/create-album');
     }
 
     /**
@@ -48,7 +60,15 @@ class AlbumsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->only(['album_name', 'album_descr']);
+        $data['user_id'] = 81;
+        $data['album_thumb'] = 'http';
+        $query = "insert into 02_albums (user_id,album_name,description, album_thumb) values (:user_id,:album_name,:album_descr,:album_thumb)";
+        $res = DB::insert($query, $data);
+        $message = 'Album '.$data['album_name'];
+        $message .= $res ? ' creato ' : ' non creato';
+        session()->flash('message',$message);
+        return redirect()->route('album-list');
     }
 
     /**
@@ -87,12 +107,20 @@ class AlbumsController extends Controller
     public function update(Request $req)
     {
         $data = $req->only(['album_name', 'album_descr', 'album']);
-        $query = ' UPDATE 02_albums set album_name=:album_name, description=:album_descr where id = :album';
-        $res = DB::update($query, array_values($data));
-        $message = 'Album con id='.$data['album'];
+        $data['album_thumb']='';
+        if($req->hasFile('album_thumb')){
+            $file = $req->file('album_thumb');
+//            $fileName = $data['album'].'.'.$file->extension();
+            $fileName=$file->store(env('IMG_DIR'));
+            $data['album_thumb'] = (string) $fileName;
+        }
+//        dd($data);
+        $query = "UPDATE 02_albums set album_name='{$data['album_name']}', description='{$data['album_name']}', album_thumb='{$data['album_thumb']}' where id = {$data['album']}";
+        $res = DB::update($query);//, array_values($data));
+        $message = 'Album con id : '.$data['album'];
         $message .= $res ? ' aggiornato ' : ' non aggiornato';
         session()->flash('message',$message);
-        return redirect()->route('album-edit');
+        return redirect()->route('album-list');
     }
 
     /**

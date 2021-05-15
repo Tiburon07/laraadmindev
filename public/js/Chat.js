@@ -22,7 +22,6 @@
         this._chatContent = $('#chat_content');
         this._token = $('#_token');
         this._form = $('#message-form');
-        this._notify = new Audio(G_baseUrl+'/dist/audio/clearly.mp3');
 
         this._form.on('submit', this._onclickBtnAssegna.bind(this));
         _this = this;
@@ -39,7 +38,7 @@
                                         '    <img class="direct-chat-img" src="'+G_baseUrl+'/dist/img/avatar4.png" alt="message user image">\n' +
                                         '    <div class="direct-chat-text">'+e.message+'</div>\n' +
                                         '</div>')
-                _this._notify.play();
+                new Audio(G_baseUrl+'/dist/audio/clearly.mp3').play();
             });
     };
 

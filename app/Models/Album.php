@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 use Auth;
 
 /**
@@ -38,14 +39,28 @@ class Album extends Model
     protected $table = '02_albums';
 
     public function getAlbumsByUser(){
-        $sql = "SELECT * from 02_albums where user_id = ? ";
+        $sql = "SELECT * from 02_albums where user_id = ? order by id desc";
         $where['user_id'] = Auth::user()->id;
         return DB::select($sql,array_values($where));
     }
 
-    public function deleteAlbum(int $idAlbum){
+    public function getAlbums(Request $req){
+        $queryBuilder = DB::table($this->table);
+        if($req->has('id'))
+            $queryBuilder->where('id','=', $req->input('id'));
+        if($req->has('album_name'))
+            $queryBuilder->where('album_name','like', '%'.$req->input('album_name').'%');
+        $queryBuilder->orderBy('id','desc');
+        return $queryBuilder->get();
+    }
+
+    public function deleteAlbum2(int $idAlbum){
         $sql = "DELETE FROM 02_albums where id = :id";
         return DB::delete($sql,['id' => $idAlbum]);
+    }
+
+    public function deleteAlbum(int $idAlbum){
+        return  DB::table($this->table)->delete($idAlbum);
     }
 
 }
