@@ -22,8 +22,8 @@
         this._chatContent = $('#chat_content');
         this._token = $('#_token');
         this._form = $('#message-form');
+        this._notify = new Audio(G_baseUrl+'/dist/audio/clearly.mp3');
 
-        // this._btnSend.on('click', this._onclickBtnAssegna.bind(this));
         this._form.on('submit', this._onclickBtnAssegna.bind(this));
         _this = this;
 
@@ -39,30 +39,12 @@
                                         '    <img class="direct-chat-img" src="'+G_baseUrl+'/dist/img/avatar4.png" alt="message user image">\n' +
                                         '    <div class="direct-chat-text">'+e.message+'</div>\n' +
                                         '</div>')
+                _this._notify.play();
             });
-
-        //this._socket = io('https://chat-node-server-a7fgw.ondigitalocean.app');
-        // this._socket.on('connection');
-        // this._socket.on('sendChatToClient', (message) => {
-        //     console.log(message);
-        //     this._chatContent.append('<div class="direct-chat-msg">\n' +
-        //                             '    <div class="direct-chat-infos clearfix">\n' +
-        //                             '        <span class="direct-chat-name float-left">Tibur</span>\n' +
-        //                             '        <span class="direct-chat-timestamp float-right">23 Jan 5:37 pm</span>\n' +
-        //                             '    </div>\n' +
-        //                             '    <img class="direct-chat-img" src="'+G_baseUrl+'/dist/img/avatar4.png" alt="message user image">\n' +
-        //                             '    <div class="direct-chat-text">'+message+'</div>\n' +
-        //                             '</div>')
-        // })
     };
 
-    // -- Handler Event
-    // ns.Chat.prototype._onclickBtnAssegna = function(e) {
-    //     this._socket.emit('sendChatToServer',this._inpMes.val());
-    //     this._inpMes.val('');
-    // };
-
     ns.Chat.prototype._onclickBtnAssegna = function(e) {
+
         e.preventDefault();
         const options = {
             method: 'post',
@@ -78,3 +60,23 @@
     };
 
 })();
+
+//Collegamento un socket.io
+//this._socket = io('https://chat-node-server-a7fgw.ondigitalocean.app');
+// this._socket.on('connection');
+// this._socket.on('sendChatToClient', (message) => {
+//     console.log(message);
+//     this._chatContent.append('<div class="direct-chat-msg">\n' +
+//                             '    <div class="direct-chat-infos clearfix">\n' +
+//                             '        <span class="direct-chat-name float-left">Tibur</span>\n' +
+//                             '        <span class="direct-chat-timestamp float-right">23 Jan 5:37 pm</span>\n' +
+//                             '    </div>\n' +
+//                             '    <img class="direct-chat-img" src="'+G_baseUrl+'/dist/img/avatar4.png" alt="message user image">\n' +
+//                             '    <div class="direct-chat-text">'+message+'</div>\n' +
+//                             '</div>')
+// })
+// -- Handler Event
+// ns.Chat.prototype._onclickBtnAssegna = function(e) {
+//     this._socket.emit('sendChatToServer',this._inpMes.val());
+//     this._inpMes.val('');
+// };

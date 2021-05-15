@@ -35,8 +35,8 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{route('album-list')}}" class="nav-link">
-                        <i class="nav-icon fas fa-images"></i>
-                        <p>Galleria</p>
+                        <i class="nav-icon fas fa-archive"></i>
+                        <p>Archivio</p>
                     </a>
                 </li>
                 <li class="nav-item">

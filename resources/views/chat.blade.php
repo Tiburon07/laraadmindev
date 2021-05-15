@@ -16,6 +16,7 @@
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="{{route('home')}}}">Home</a></li>
                         <li class="breadcrumb-item active">Chat</li>
                     </ol>
                 </div><!-- /.col -->
@@ -28,15 +29,15 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-8">
                     <div class="card direct-chat direct-chat-primary">
                         <div class="card-header">
                             <h3 class="card-title">Chat</h3>
                             <div class="card-tools">
-                                <span title="3 New Messages" class="badge badge-primary">1</span>
+{{--                                <span title="3 New Messages" class="badge badge-primary">1</span>--}}
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
                                 <button type="button" class="btn btn-tool" title="Contacts" data-widget="chat-pane-toggle"><i class="fas fa-comments"></i></button>
-                                <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+{{--                                <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>--}}
                             </div>
                         </div>
                         <div class="card-body">
@@ -59,8 +60,8 @@
                             <form id="message-form">
                                 <div class="input-group">
                                     <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}" />
-                                    <input type="text" id="chat_input_msg" name="message" placeholder="Type Message ..." class="form-control">
-                                    <input type="hidden" id="chat_username" name="username" value="{{ Auth::user()->name }}" placeholder="Type Message ..." class="form-control">
+                                    <input type="hidden" id="chat_username" name="username" value="{{ Auth::user()->name }}" class="form-control">
+                                    <input type="text" id="chat_input_msg" name="message" placeholder="messaggio ..." class="form-control">
                                     <span class="input-group-append">
                                         <button id="chat_btn_send" type="submit" class="btn btn-primary">Send</button>
                                     </span>
