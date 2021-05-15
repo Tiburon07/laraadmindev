@@ -61,7 +61,7 @@ class AlbumsController extends Controller
     public function store(Request $request)
     {
         $data = $request->only(['album_name', 'album_descr']);
-        $data['user_id'] = 81;
+        $data['user_id'] = Auth::user()->id;
         $data['album_thumb'] = 'http';
         $query = "insert into 02_albums (user_id,album_name,description, album_thumb) values (:user_id,:album_name,:album_descr,:album_thumb)";
         $res = DB::insert($query, $data);

@@ -39,7 +39,7 @@ Route::group(
 
 //ATTIVITA
 Route::group(
-    ['middleware' => 'auth','prefix' => 'attivita'],
+    ['middleware' => ['auth','verifyIsAdmin'],'prefix' => 'attivita'],
     function (){
         Route::get('/', [AttivitaController::class, 'index'])->name('attivita-list');
         Route::get('/getFederazioni', [AttivitaController::class, 'getFederazioni']);
