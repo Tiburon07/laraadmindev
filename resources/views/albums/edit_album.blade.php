@@ -37,7 +37,6 @@
                 </div>
                 @if($album->album_thumb)
                     <div class="form-group">
-                        <p>{{url('/storage/'.$album->album_thumb)}}</p>
                         <img width="300" src="{{url('/storage/'.$album->album_thumb)}}" alt="{{$album->album_name}}" title="{{$album->album_name}}">
                     </div>
                 @endif

@@ -106,7 +106,8 @@ class AlbumsController extends Controller
      */
     public function update(Request $req)
     {
-        $data = $req->only(['album_name', 'album_descr', 'album']);
+        $data['album_name'] = $req->get('album_name');
+        $data['album_descr'] =$req->get('album_descr');
         $data['album_thumb']='';
         if($req->hasFile('album_thumb')){
             $file = $req->file('album_thumb');
@@ -114,9 +115,9 @@ class AlbumsController extends Controller
             $fileName=$file->store(env('IMG_DIR'));
             $data['album_thumb'] = (string) $fileName;
         }
-//        dd($data);
-        $query = "UPDATE 02_albums set album_name='{$data['album_name']}', description='{$data['album_name']}', album_thumb='{$data['album_thumb']}' where id = {$data['album']}";
-        $res = DB::update($query);//, array_values($data));
+        $data['album'] =$req->get('album');
+        $query = "UPDATE 02_albums set album_name=:album_name, description=:album_descr, album_thumb=:album_thumb where id = :album";
+        $res = DB::update($query, array_values($data));
         $message = 'Album con id : '.$data['album'];
         $message .= $res ? ' aggiornato ' : ' non aggiornato';
         session()->flash('message',$message);
