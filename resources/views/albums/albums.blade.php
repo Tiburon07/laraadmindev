@@ -50,7 +50,7 @@
                                 @if($album->album_thumb)
                                     <div class="form-group">
                                         <p></p>
-                                        <img width="100" src="{{url('/storage/'.$album->album_thumb)}}" alt="{{$album->album_name}}" title="{{$album->album_name}}">
+                                        <img width="50" src="{{url('/storage/'.$album->album_thumb)}}" alt="{{$album->album_name}}" title="{{$album->album_name}}">
                                     </div>
                                 @endif
                                 <div>
