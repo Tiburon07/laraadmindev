@@ -25,7 +25,7 @@
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
-                <form method="POST" action="{{route('album-store')}}">
+                <form method="POST" action="{{route('album-store')}}" enctype="multipart/form-data">
                     @method('POST')
                     @csrf()
                     <div class="form-group">

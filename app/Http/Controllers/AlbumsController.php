@@ -60,9 +60,15 @@ class AlbumsController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->only(['album_name', 'album_descr']);
         $data['user_id'] = Auth::user()->id;
-        $data['album_thumb'] = 'http';
+        $data['album_name'] = $request->get('album_name');
+        $data['album_descr'] =$request->get('album_descr');
+        $data['album_thumb'] = '';
+        if($request->hasFile('album_thumb')){
+            $file = $request->file('album_thumb');
+            $fileName=$file->store(env('IMG_DIR'));
+            $data['album_thumb'] = (string) $fileName;
+        }
         $query = "insert into 02_albums (user_id,album_name,description, album_thumb) values (:user_id,:album_name,:album_descr,:album_thumb)";
         $res = DB::insert($query, $data);
         $message = 'Album '.$data['album_name'];
