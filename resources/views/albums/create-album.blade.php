@@ -37,6 +37,10 @@
                         <textarea required class="form-control" name="album_descr" id="album_descr"></textarea>
                     </div>
                     <div class="form-group">
+                        <label for="album_thumb">File input</label>
+                        <input required class="form-control" type="file" name="album_thumb" id="album_thumb">
+                    </div>
+                    <div class="form-group">
                         <button type="submit" class="btn btn-primary">Salva</button>
                     </div>
                 </form>

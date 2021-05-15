@@ -29,7 +29,12 @@
         <section class="content">
             <div class="container-fluid">
                 @if(session()->has('message'))
-                    <x-alert-info/>
+                    <div>
+                        <div class="alert alert-default-info alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                            <h6><i class="icon fa fa-info"></i>{{session()->get('message')}}.</h6>
+                        </div>
+                    </div>
                 @endif
                 <div class="row">
                     <div class="col-12">
