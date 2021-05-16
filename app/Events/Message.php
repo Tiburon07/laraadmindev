@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use Date;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -19,11 +20,14 @@ class Message implements ShouldBroadcast
     public $user_name;
     public $user_id;
     public $message;
+    public $created_at;
 
     public function __construct($username, $message, $userId){
+        date_default_timezone_set('Europe/Rome');
         $this->user_name = $username;
         $this->user_id = $userId;
         $this->message  = $message;
+        $this->created_at  = date('Y-m-d H:i:s');
     }
 
     /**
@@ -36,7 +40,8 @@ class Message implements ShouldBroadcast
         $data['user_id'] = $this->user_id;
         $data['user_name'] = $this->user_name;
         $data['message'] = $this->message;
-        $query = "insert into messages (user_id,user_name,message, created_at) values (:user_id,:user_name,:message, NOW())";
+        $data['created_at'] = $this->created_at;
+        $query = "insert into messages (user_id,user_name,message, created_at) values (:user_id,:user_name,:message, :created_at)";
         DB::insert($query, $data);
         return new Channel('chat');
     }
