@@ -25,6 +25,7 @@ class AttivitaController extends Controller
         return view('attivita/attivita',['attivita' => $attivita, 'view' => 'attivita']);
     }
 
+
     public function getAttivita(int $start, int $length,int $column, $dir, $search){
         $result = ['data' => [], 'statusCode' => 200, 'message' => ''];
         $result['dataCount'] = $this->attivitaModel->countAttivita($search);
