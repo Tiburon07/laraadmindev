@@ -5,8 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Message extends Model
+class Task extends Model
 {
     use HasFactory;
-    protected $table = 'messages';
+    protected $table = '01_task';
 }

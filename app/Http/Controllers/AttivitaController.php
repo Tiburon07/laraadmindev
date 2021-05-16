@@ -45,4 +45,9 @@ class AttivitaController extends Controller
         $res = $this->attivitaModel->storeAttivita($req->all());
         return response()->json($res);
     }
+
+    public function getTaskBookmark(int $idAttivita){
+        $res = $this->attivitaModel->getTaskBookmark($idAttivita);
+        return response()->json($res);
+    }
 }

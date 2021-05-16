@@ -79,4 +79,10 @@ class Attivita extends Model
                            :created_at)";
         return DB::insert($query, $data);
     }
+
+    public function getTaskBookmark(int $idAttivita){
+        $data['tasks'] = Task::all()->where('attivita_id', '=', $idAttivita);
+        $data['bookmarks'] = Bookmark::all()->where('attivita_id', '=', $idAttivita);
+        return $data;
+    }
 }

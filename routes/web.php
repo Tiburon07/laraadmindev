@@ -49,6 +49,8 @@ Route::group(
         Route::get('/getFederazioni', [AttivitaController::class, 'getFederazioni']);
         Route::get('/getUsersAttivita', [AttivitaController::class, 'getUsersAttivita']);
         Route::get('/getAttivita/{start}/{length}/{col}/{dir}/{search}', [AttivitaController::class, 'getAttivita']);
+        Route::get('/getTaskBookmark/{id}', [AttivitaController::class, 'getTaskBookmark']);
+
         Route::post('/assegna', [AttivitaController::class, 'assegna']);
     }
 );

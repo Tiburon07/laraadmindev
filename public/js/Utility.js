@@ -1464,10 +1464,10 @@ const Utility = {
         .append($('<i class="fa fa-ellipsis-v"></i>'))
         .append($('<i class="fa fa-ellipsis-v"></i>'))
         );
-    liTask.append($('<input type="checkbox" value="">'));
-    liTask.append($('<span class="text"></span>').text('Titolo task'));
-    liTask.append($('<small class="label label-info">')
-            .append($('<i class="fa fa-clock-o"></i>').text('1 giorno'))
+    liTask.append($('<input type="checkbox" value="">').prop('checked',dataTask.checked).val(dataTask.id));
+    liTask.append($('<span class="text"></span>').text(dataTask.task));
+    liTask.append($('<span class="badge bg-info">')
+            .append($('<i class="fa fa-clock-o"></i>').text(dataTask.tempo_previsto))
         );
     liTask.append($('<div class="tools">')
           .append($('<i class="fa fa-edit"></i>'))

@@ -32,8 +32,7 @@
 
     // -- Eventi
     this._btnNewAttivita.on('click', this._onclickBtnNewAttivita.bind(this));
-    this._btnNewTask.on('click', this._onclickBtnNewTask.bind(this));
-    this._btnNewBookmark.on('click', this._onclickBtnNewBookmark.bind(this));
+    this._attivitaTable.on('click','button',this._onClickAction.bind(this));
 
     // -- Table Users Config
     this._tableConfigAttivita = this._utility.getTableConfig();
@@ -75,8 +74,8 @@
         data: "action",
         className: "text-center",
         render: function (data, type, row, meta) {
-            let btnTask = '<button data-action="task_bookmark" class="btn btn-sm mr-1 btn-primary" title="nuovo ask"><i class="fas fa-tasks"></i></button>';
-            let btnBook = '<button data-action="task_bookmark" class="btn btn-sm mr-1 btn-primary" title="nuovo bookmark"><i class="fas fa-bookmark"></i></button>';
+            let btnTask = '<button data-action="task" class="btn btn-sm mr-1 btn-primary" title="nuovo ask"><i class="fas fa-tasks"></i></button>';
+            let btnBook = '<button data-action="bookmark" class="btn btn-sm mr-1 btn-primary" title="nuovo bookmark"><i class="fas fa-bookmark"></i></button>';
             let btnCarica = '<button data-action="carica_task_book" class="btn btn-sm mr-1 btn-primary" title="carica task e bookmark"><i class="fas fa-eye"></i></button>';
             //let btnDel = '<button '+ ((row.deleted_at) ? ' disabled ' : '') + ' class="btn mr-1 btn-sm btn-danger"><i class="far fa-trash-alt"></i></button>';
             // let btnForceDel = '<button class="btn btn-sm mr-1 btn-danger">Force <i class="far fa-trash-alt"></button>';
@@ -127,12 +126,27 @@
       this._modalAttivita.show();
   };
 
-  ns.AttivitaList.prototype._onclickBtnNewTask = function(e) {
-      this._ulTask.append(this._utility.getTask(''));
+  ns.AttivitaList.prototype._onClickAction = function(e) {
+      let rowData = this._attivitaTable.DataTable().row($(e.target).parents('tr')).data();
+      console.log(rowData);
+      switch (e.currentTarget.dataset.action) {
+          case 'task':
+                alert('da implementare');
+              break;
+          case 'bookmark':
+              alert('da implementare');
+              break;
+          case 'carica_task_book':
+              this._getActionBookMark(rowData);
+              break;
+          default:
+              break;
+      }
   };
 
-  ns.AttivitaList.prototype._onclickBtnNewBookmark = function(e) {
 
+    ns.AttivitaList.prototype._onclickBtnNewTask = function(e) {
+      this._ulTask.append(this._utility.getTask(''));
   };
 
   ns.AttivitaList.prototype._onSuccessAssegna = function(e) {
@@ -148,5 +162,34 @@
 
     ns.AttivitaList.prototype.refresh = function(e) {
         this._attivitaTable.DataTable().ajax.reload();
+    };
+
+    ns.AttivitaList.prototype._getActionBookMark = function(data){
+        const options = {
+            method: 'get',
+            url: G_baseUrl + '/attivita/getTaskBookmark/' + data.id,
+        }
+        this._utility.showStackSpinner('get_task_bookmark');
+        axios(options).then( res => {
+                Utility.hideStackSpinner('get_task_bookmark');
+                let tasks = res.data.tasks;
+                let bookmarks = res.data.bookmarks;
+                let ulTask = admindev.attivita.AttivitaList.getInstance().getTaskContainer();
+                ulTask.empty();
+                for(let i in tasks){
+                    ulTask.append(Utility.getTask(tasks[i]))
+                }
+                // admindev.attivita.AttivitaList.getInstance().refresh();
+                // admindev.attivita.ModalNewAttivita.getInstance().hide();
+            }
+        ).catch(err => {
+                Utility.hideStackSpinner('get_task_bookmark');
+                Utility.showModal({ 'type': Utility.ERROR, 'sMsg': err.response.data.message, 'modalSize': 'large' });
+            }
+        )
+    }
+
+    ns.AttivitaList.prototype.getTaskContainer = function() {
+        return this._ulTask;
     };
 })();
