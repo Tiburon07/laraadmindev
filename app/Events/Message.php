@@ -36,7 +36,7 @@ class Message implements ShouldBroadcast
         $data['user_id'] = $this->user_id;
         $data['user_name'] = $this->user_name;
         $data['message'] = $this->message;
-        $query = "insert into messages (user_id,user_name,message) values (:user_id,:user_name,:message)";
+        $query = "insert into messages (user_id,user_name,message, created_at) values (:user_id,:user_name,:message, NOW())";
         DB::insert($query, $data);
         return new Channel('chat');
     }
