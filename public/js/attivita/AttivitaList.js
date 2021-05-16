@@ -153,6 +153,7 @@
       alert('assegnato');
   };
 
+
   // -- Handler Event
   ns.AttivitaList.prototype._getElencoAttivita = function (data, callbackDataTable){
       let search = (data.search.value) ? data.search.value : '*';
