@@ -22,7 +22,8 @@ class AttivitaController extends Controller
      */
     public function index(Request $req) {
         $attivita = $this->attivitaModel::all();
-        return view('attivita/attivita',['attivita' => $attivita, 'view' => 'attivita']);
+        return view('attivita/attivita',['attivita' => $attivita, 'view' => 'attivita_view']);
+
     }
 
 

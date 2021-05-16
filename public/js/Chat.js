@@ -12,10 +12,11 @@
      * Costruttore della classe per la
      * @constructor
      */
-    ns.Chat = function() {
+    ns.Chat = function(authUser) {
         // -- valori attuali --
+        _this = this;
         this._utility = Utility;
-
+        this._authUser = authUser;
         this._inpMes = $('#chat_input_msg');
         this._inpUsername = $('#chat_username');
         this._inpUserId = $('#chat_userid');
@@ -25,21 +26,36 @@
         this._form = $('#message-form');
 
         this._form.on('submit', this._onclickBtnAssegna.bind(this));
-        _this = this;
-
+        console.log(authUser);
         window.Echo.channel('chat').listen('.message', function(e){
                 let today = new Date();
                 let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
                 let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate()
-                _this._chatContent.append('<div class="direct-chat-msg">\n' +
-                                        '    <div class="direct-chat-infos clearfix">\n' +
-                                        '        <span class="direct-chat-name float-left">'+e.user_name+'</span>\n' +
-                                        '        <span class="direct-chat-timestamp float-right">'+date +' '+time+'</span>\n' +
-                                        '    </div>\n' +
-                                        '    <img class="direct-chat-img" src="'+G_baseUrl+'/dist/img/avatar4.png" alt="message user image">\n' +
-                                        '    <div class="direct-chat-text">'+e.message+'</div>\n' +
-                                        '</div>')
+                if(e.user_id === _this._authUser.id){
+                    _this._chatContent.append('<div class="direct-chat-msg">\n' +
+                        '    <div class="direct-chat-infos clearfix">\n' +
+                        '        <span class="direct-chat-name float-left">'+e.user_name+'</span>\n' +
+                        '        <span class="direct-chat-timestamp float-right">'+date +' '+time+'</span>\n' +
+                        '    </div>\n' +
+                        '    <img class="direct-chat-img" src="'+G_baseUrl+'/dist/img/avatar4.png" alt="message user image">\n' +
+                        '    <div class="direct-chat-text">'+e.message+'</div>\n' +
+                        '</div>')
+                }else{
+                    _this._chatContent.append('<div class="direct-chat-msg right ">\n' +
+                        '    <div class="direct-chat-infos clearfix">\n' +
+                        '        <span class="direct-chat-name float-right">'+e.user_name+'</span>\n' +
+                        '        <span class="direct-chat-timestamp float-left">'+date +' '+time+'</span>\n' +
+                        '    </div>\n' +
+                        '    <img class="direct-chat-img" src="'+G_baseUrl+'/dist/img/avatar5.png" alt="message user image">\n' +
+                        '    <div class="direct-chat-text">'+e.message+'</div>\n' +
+                        '</div>')
+                }
             });
+    };
+
+    ns.Chat.getInstance = function() {
+        if (_this === null) _this = new ns.Chat();
+        return _this;
     };
 
     ns.Chat.prototype._onclickBtnAssegna = function(e) {

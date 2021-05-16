@@ -20,7 +20,7 @@ class AdminUserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        return view('admin/users');
+        return view('admin/users', ['view' => 'home']);
     }
 
     public function getUsers(int $start, int $length,int $column, $dir, $search){

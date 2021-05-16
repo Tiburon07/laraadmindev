@@ -1,7 +1,11 @@
 @extends('base.base')
 
 @section('document_ready')
-    new admindev.Chat();
+    let authUser = {
+        id : '{{Auth::user()->id}}',
+        user_name : '{{Auth::user()->name}}',
+    }
+    new admindev.Chat(authUser);
 @stop
 
 @section('content')
