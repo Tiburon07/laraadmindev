@@ -43,7 +43,7 @@ Route::group(
 
 //ATTIVITA
 Route::group(
-    ['middleware' => ['auth','verifyIsAdmin'],'prefix' => 'attivita'],
+    ['middleware' => ['auth','verifyIsSupervisor'],'prefix' => 'attivita'],
     function (){
         Route::get('/', [AttivitaController::class, 'index'])->name('attivita-list');
         Route::get('/getFederazioni', [AttivitaController::class, 'getFederazioni']);
@@ -55,7 +55,7 @@ Route::group(
 
 //ALBUM
 Route::group(
-    ['middleware' => 'auth','prefix' => 'albums'],
+    ['middleware' => ['auth','verifyIsAdmin'],'prefix' => 'albums'],
     function (){
         Route::get('/', [AlbumsController::class, 'index'])->name('album-list');
         Route::get('/show', [AlbumsController::class, 'show']);
@@ -72,7 +72,7 @@ Route::group(
 );
 
 Route::group(
-    ['middleware' => 'auth','prefix' => 'images'],
+    ['middleware' => ['auth','verifyIsAdmin'],'prefix' => 'images'],
     function (){
         Route::get('/', [PhotosController::class, 'index'])->name('album-view');
     }
