@@ -75,3 +75,10 @@ Route::group(
     }
 );
 
+Route::group(
+    ['middleware' => 'auth','prefix' => 'images'],
+    function (){
+        Route::get('/', [PhotosController::class, 'index'])->name('album-view');
+    }
+);
+
