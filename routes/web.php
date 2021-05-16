@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AlbumsController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PhotosController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\admin\AdminUserController;
 use App\Http\Controllers\AttivitaController;
 use App\Events\Message;
@@ -20,8 +21,9 @@ require __DIR__.'/auth.php';
 Route::group(
     ['middleware' => 'auth','prefix' => ''],
     function (){
-        Route::get('/', function(){ return view('home'); })->name('home');
-        Route::get('/chat', function(){ return view('chat'); })->name('chat');
+        Route::get('/', function(){ return view('home', ['view' => 'home']); })->name('home');
+//        Route::get('/chat', function(){ return view('chat', ['view'=>'chat']); })->name('chat');
+        Route::get('/chat',[ChatController::class,'index'])->name('chat');
         Route::post('/send-message', function(Request $request){
             event(new Message($request->input('user_name'), $request->input('message'), $request->input('user_id')));
             return ["success" => true];

@@ -21,13 +21,12 @@ class AlbumsController extends Controller
 
     public function index3(Request $req) {
         $albums = $this->albumModel->getAlbumsByUser();
-        return view('albums/albums',['albums' => $albums]);
+        return view('albums/albums',['albums' => $albums, 'view' => 'archivio']);
     }
 
     public function index(Request $req) {
         $albums = $this->albumModel->getAlbums($req);
-
-        return view('albums/albums',['albums' => $albums]);
+        return view('albums/albums',['albums' => $albums, 'view' => 'archivio']);
     }
 
     public function delete(Request $req){
@@ -47,7 +46,7 @@ class AlbumsController extends Controller
         $album['album_id'] = $req->get('album');
         $album['album_name'] = $req->get('album_name');
         $album['images'] = json_decode(Photo::whereAlbumId($album['album_id'])->get());
-        return view('albums/album-images',['album' => $album]);
+        return view('albums/album-images',['album' => $album,'view' => 'archivio']);
     }
 
     public function delete2(Request $req){

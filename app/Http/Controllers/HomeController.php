@@ -7,7 +7,7 @@ use App\Models\User;
 
 class HomeController{
     public function index(){
-        return view('home');
+        return view('home', ['view' => 'home']);
     }
 
     public function albums(){

@@ -30,10 +30,10 @@
         window.Echo.channel('chat').listen('.message', function(e){
                 let today = new Date();
                 let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-                let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+                let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate()
                 _this._chatContent.append('<div class="direct-chat-msg">\n' +
                                         '    <div class="direct-chat-infos clearfix">\n' +
-                                        '        <span class="direct-chat-name float-left">'+e.username+'</span>\n' +
+                                        '        <span class="direct-chat-name float-left">'+e.user_name+'</span>\n' +
                                         '        <span class="direct-chat-timestamp float-right">'+date +' '+time+'</span>\n' +
                                         '    </div>\n' +
                                         '    <img class="direct-chat-img" src="'+G_baseUrl+'/dist/img/avatar4.png" alt="message user image">\n' +

@@ -41,7 +41,33 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <div id="chat_content" class="direct-chat-messages" style="height: 30rem;"></div>
+                            <div id="chat_content" class="direct-chat-messages" style="height: 30rem;">
+                                @foreach($messages as $message)
+                                    @if(Auth::id() == $message->user_id)
+                                        <div class="direct-chat-msg">
+                                            <div class="direct-chat-info clearfix">
+                                                <span class="direct-chat-name pull-left">{{$message->user_name}}</span>
+                                                <span class="direct-chat-timestamp pull-right">{{$message->created_at}}</span>
+                                            </div>
+                                            <img class="direct-chat-img" src="dist/img/avatar4.png" alt="message user image">
+                                            <div class="direct-chat-text">
+                                                {{$message->message}}
+                                            </div>
+                                        </div>
+                                    @else
+                                        <div class="direct-chat-msg right">
+                                            <div class="direct-chat-info clearfix">
+                                                <span class="direct-chat-name pull-right">{{$message->user_name}}</span>
+                                                <span class="direct-chat-timestamp pull-left">{{$message->created_at}}</span>
+                                            </div>
+                                            <img class="direct-chat-img" src="dist/img/avatar3.png" alt="message user image">
+                                            <div class="direct-chat-text">
+                                                {{$message->message}}
+                                            </div>
+                                        </div>
+                                    @endif
+                                @endforeach
+                            </div>
                             <div class="direct-chat-contacts" style="height: 30rem;">
                                 <ul class="contacts-list">
                                     <li>

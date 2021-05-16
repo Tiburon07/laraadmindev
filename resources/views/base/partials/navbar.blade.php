@@ -14,7 +14,7 @@
     <ul class="navbar-nav ml-auto">
         <li class="nav-item">
             <a class="nav-link"  href="{{route('chat')}}" role="button">
-                <span class="label text-info">4</span>
+                <span class="label text-danger" id="chat_alert_message"></span>
                 <i class="nav-icon fas fa-comments"></i>
             </a>
         </li>

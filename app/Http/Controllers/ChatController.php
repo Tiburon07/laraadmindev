@@ -2,31 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Photo;
-use App\Models\Album;
-use Illuminate\Database\Eloquent\Model;
+use App\Models\Message;
 use Illuminate\Http\Request;
 
-class PhotosController extends Controller
+class ChatController extends Controller
 {
-    private $albumModel = null;
-    private $photoModel = null;
-
-    public function __construct(){
-        $this->albumModel = new Album();
-        $this->photoModel = new Photo();
-    }
-
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $req) {
-        $album['album_id'] = $req->get('album');
-        $album['album_name'] = $req->get('album_name');
-        $album['images'] = json_decode(Photo::whereAlbumId($album['album_id'])->get());
-        return view('albums/album-images',['album' => $album, 'view' => 'archivio']);
+    public function index()
+    {
+        $messages = Message::all();
+        return view('chat/chat',['messages' => json_decode($messages), 'view' => 'chat']);
     }
 
     /**

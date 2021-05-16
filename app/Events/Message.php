@@ -9,6 +9,8 @@ use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\DB;
+use App\Models\Message as MessageModel;
 
 class Message implements ShouldBroadcast
 {
@@ -31,7 +33,11 @@ class Message implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-
+        $data['user_id'] = $this->user_id;
+        $data['user_name'] = $this->user_name;
+        $data['message'] = $this->message;
+        $query = "insert into messages (user_id,user_name,message) values (:user_id,:user_name,:message)";
+        DB::insert($query, $data);
         return new Channel('chat');
     }
 

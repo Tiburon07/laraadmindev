@@ -37,10 +37,11 @@
     @show
 
     document.addEventListener("DOMContentLoaded", function(event) {
-        @section('document_ready') @show
         window.Echo.channel('chat').listen('.message', function(e){
+            @if($view != 'chat') $('#chat_alert_message').empty().append('<i class="fas fa-circle fa-xs"></i>'); @endif
             new Audio(G_baseUrl+'/dist/audio/clearly.mp3').play();
         });
+        @section('document_ready') @show
     });
 
 </script>
