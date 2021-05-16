@@ -60,7 +60,7 @@
                                                 <span class="direct-chat-name pull-right">{{$message->user_name}}</span>
                                                 <span class="direct-chat-timestamp pull-left">{{$message->created_at}}</span>
                                             </div>
-                                            <img class="direct-chat-img" src="dist/img/avatar3.png" alt="message user image">
+                                            <img class="direct-chat-img" src="dist/img/avatar5.png" alt="message user image">
                                             <div class="direct-chat-text">
                                                 {{$message->message}}
                                             </div>
