@@ -38,6 +38,9 @@
 
     document.addEventListener("DOMContentLoaded", function(event) {
         @section('document_ready') @show
+        window.Echo.channel('chat').listen('.message', function(e){
+            new Audio(G_baseUrl+'/dist/audio/clearly.mp3').play();
+        });
     });
 
 </script>

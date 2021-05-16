@@ -18,6 +18,7 @@
 
         this._inpMes = $('#chat_input_msg');
         this._inpUsername = $('#chat_username');
+        this._inpUserId = $('#chat_userid');
         this._btnSend = $('#chat_btn_send');
         this._chatContent = $('#chat_content');
         this._token = $('#_token');
@@ -38,7 +39,6 @@
                                         '    <img class="direct-chat-img" src="'+G_baseUrl+'/dist/img/avatar4.png" alt="message user image">\n' +
                                         '    <div class="direct-chat-text">'+e.message+'</div>\n' +
                                         '</div>')
-                new Audio(G_baseUrl+'/dist/audio/clearly.mp3').play();
             });
     };
 
@@ -49,7 +49,8 @@
             method: 'post',
             url: G_baseUrl + '/send-message',
             data: {
-                username : this._inpUsername.val(),
+                user_name : this._inpUsername.val(),
+                user_id : this._inpUserId.val(),
                 message : this._inpMes.val(),
                 _token: this._token.val()
             }

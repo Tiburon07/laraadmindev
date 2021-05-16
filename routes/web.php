@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AlbumsController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\PhotosController;
 use App\Http\Controllers\admin\AdminUserController;
 use App\Http\Controllers\AttivitaController;
 use App\Events\Message;
@@ -22,7 +23,7 @@ Route::group(
         Route::get('/', function(){ return view('home'); })->name('home');
         Route::get('/chat', function(){ return view('chat'); })->name('chat');
         Route::post('/send-message', function(Request $request){
-            event(new Message($request->input('username'), $request->input('message')));
+            event(new Message($request->input('user_name'), $request->input('message'), $request->input('user_id')));
             return ["success" => true];
         });
     }
@@ -56,6 +57,7 @@ Route::group(
         Route::get('/', [AlbumsController::class, 'index'])->name('album-list');
         Route::get('/show', [AlbumsController::class, 'show']);
         Route::get('/index2', [AlbumsController::class, 'index2']);
+//        Route::get('/view', [AlbumsController::class, 'getImages'])->name('album-view');
 //        Route::get('/{id}/delete', [AlbumsController::class, 'delete']);
 
         Route::get('/edit', [AlbumsController::class, 'edit'])->name('album-edit');
@@ -63,6 +65,13 @@ Route::group(
         Route::get('/create', [AlbumsController::class, 'create'])->name('album-create');
         Route::post('/store', [AlbumsController::class, 'store'])->name('album-store');
         Route::post('/update', [AlbumsController::class, 'update'])->name('album-update');
+    }
+);
+
+Route::group(
+    ['middleware' => 'auth','prefix' => 'images'],
+    function (){
+        Route::get('/', [PhotosController::class, 'index'])->name('album-view');
     }
 );
 

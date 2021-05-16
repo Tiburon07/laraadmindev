@@ -5,11 +5,11 @@
                 <img class="animation__wobble" src="{{asset('dist/img/AdminLTELogo.png')}}" alt="AdminDevLogo" height="60" width="60">
             </a>
         </x-slot>
-        <div class="flex flex items-center mb-3">
-            <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('register') }}">
-                {{ __('Non hai un account? Registrati subito!') }}
-            </a>
-        </div>
+{{--        <div class="flex flex items-center mb-3">--}}
+{{--            <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('register475921') }}">--}}
+{{--                {{ __('Non hai un account? Registrati subito!') }}--}}
+{{--            </a>--}}
+{{--        </div>--}}
         <!-- Session Status -->
         <x-auth-session-status class="mb-4" :status="session('status')" />
 

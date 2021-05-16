@@ -3,16 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Models\Album;
+use App\Models\Photo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Auth;
+use Illuminate\Support\Facades\Storage;
 
 class AlbumsController extends Controller
 {
     private $albumModel = null;
+    private $photoModel = null;
 
     public function __construct(){
         $this->albumModel = new Album();
+        $this->photoModel = new Photo();
     }
 
     public function index3(Request $req) {
@@ -22,16 +26,28 @@ class AlbumsController extends Controller
 
     public function index(Request $req) {
         $albums = $this->albumModel->getAlbums($req);
+
         return view('albums/albums',['albums' => $albums]);
     }
 
     public function delete(Request $req){
         $id = $req->get('album');
-        $albums = $this->albumModel->deleteAlbum($id);
+        $album_thumb = $req->get('album_thumb');
+        $res = $this->albumModel->deleteAlbum($id);
+        if($res && $album_thumb && Storage::exists($album_thumb)){
+            Storage::delete($album_thumb);
+        }
         $message = 'Album con id : '.$id;
-        $message .= $albums ? ' eliminato ' : ' non eliminato';
+        $message .= $res ? ' eliminato ' : ' non eliminato';
         session()->flash('message',$message);
         return redirect()->route('album-list');
+    }
+
+    public function getImages(Request $req) {
+        $album['album_id'] = $req->get('album');
+        $album['album_name'] = $req->get('album_name');
+        $album['images'] = json_decode(Photo::whereAlbumId($album['album_id'])->get());
+        return view('albums/album-images',['album' => $album]);
     }
 
     public function delete2(Request $req){

@@ -49,12 +49,15 @@
                                 <p>{{$album->album_name}} - {{$album->id}}</p>
                                 @if($album->album_thumb)
                                     <div class="form-group">
-                                        <img width="50" src="{{url('/storage/'.$album->album_thumb)}}" alt="{{$album->album_name}}" title="{{$album->album_name}}">
+                                        <img width="150" src="{{url('/storage/'.$album->album_thumb)}}" alt="{{$album->album_name}}" title="{{$album->album_name}}">
                                     </div>
                                 @endif
                                 <div>
+                                    @if($album->photos_count)
+                                        <a href="{{route('album-view',['album'=>$album->id,'album_name'=>$album->album_name])}}" class="btn btn-secondary">({{$album->photos_count}}) View imges</a>
+                                    @endif
                                     <a href="{{route('album-edit',['album'=>$album->id])}}" class="btn btn-primary">Update</a>
-                                    <a href="{{route('album-delete',['album'=>$album->id])}}" class="btn btn-danger">Delete</a>
+                                    <a href="{{route('album-delete',['album'=>$album->id,'album_thumb'=>$album->album_thumb])}}" class="btn btn-danger">Delete</a>
                                 </div>
                             </li>
                         @endforeach

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 /**
  * App\Models\Photo
@@ -34,4 +35,10 @@ class Photo extends Model
 {
     use HasFactory;
     protected $table = '02_photos';
+
+    public function getPhotoByAlbum($idAlbum){
+        $sql = "SELECT * from 02_photos where album_id = ? order by id desc";
+        $where['album_id'] = $idAlbum;
+        return DB::select($sql,array_values($where));
+    }
 }

@@ -60,7 +60,8 @@
                             <form id="message-form">
                                 <div class="input-group">
                                     <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}" />
-                                    <input type="hidden" id="chat_username" name="username" value="{{ Auth::user()->name }}" class="form-control">
+                                    <input type="hidden" id="chat_username" name="user_name" value="{{ Auth::user()->name }}" class="form-control">
+                                    <input type="hidden" id="chat_userid" name="user_id" value="{{ Auth::user()->id }}" class="form-control">
                                     <input type="text" id="chat_input_msg" name="message" placeholder="messaggio ..." class="form-control">
                                     <span class="input-group-append">
                                         <button id="chat_btn_send" type="submit" class="btn btn-primary">Send</button>

@@ -44,7 +44,7 @@ class Album extends Model
         return DB::select($sql,array_values($where));
     }
 
-    public function getAlbums(Request $req){
+    public function getAlbums2(Request $req){
         $queryBuilder = DB::table($this->table);
         if($req->has('id'))
             $queryBuilder->where('id','=', $req->input('id'));
@@ -52,6 +52,11 @@ class Album extends Model
             $queryBuilder->where('album_name','like', '%'.$req->input('album_name').'%');
         $queryBuilder->orderBy('id','desc');
         return $queryBuilder->get();
+    }
+
+    public function getAlbums(Request $req){
+        $sql = "SELECT  a.*, (SELECT  COUNT(*) FROM 02_photos p where p.album_id = a.id) as photos_count FROM 02_albums a order by a.id desc";
+        return DB::select($sql);
     }
 
     public function deleteAlbum2(int $idAlbum){
@@ -63,4 +68,7 @@ class Album extends Model
         return  DB::table($this->table)->delete($idAlbum);
     }
 
+    public function photos(){
+        return $this->hasMany(Photo::class, 'album_id', 'id');
+    }
 }
