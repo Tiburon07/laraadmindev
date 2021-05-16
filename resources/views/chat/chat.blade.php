@@ -101,49 +101,49 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <!-- USERS LIST -->
-                    <div class="box box-danger">
-                        <!-- /.box-header -->
-                        <div class="box-body no-padding">
-                            <ul class="users-list clearfix">
-                                <li>
-                                    <img src="dist/img/user1-128x128.jpg" alt="User Image">
-                                    <a class="users-list-name" href="#">Alexander Pierce</a>
-                                </li>
-                                <li>
-                                    <img src="dist/img/user8-128x128.jpg" alt="User Image">
-                                    <a class="users-list-name" href="#">Norman</a>
-                                </li>
-                                <li>
-                                    <img src="dist/img/user7-128x128.jpg" alt="User Image">
-                                    <a class="users-list-name" href="#">Jane</a>
-                                </li>
-                                <li>
-                                    <img src="dist/img/user6-128x128.jpg" alt="User Image">
-                                    <a class="users-list-name" href="#">John</a>
-                                </li>
-                                <li>
-                                    <img src="dist/img/user2-160x160.jpg" alt="User Image">
-                                    <a class="users-list-name" href="#">Alexander</a>
-                                </li>
-                                <li>
-                                    <img src="dist/img/user5-128x128.jpg" alt="User Image">
-                                    <a class="users-list-name" href="#">Sarah</a>
-                                </li>
-                                <li>
-                                    <img src="dist/img/user4-128x128.jpg" alt="User Image">
-                                    <a class="users-list-name" href="#">Nora</a>
-                                </li>
-                                <li>
-                                    <img src="dist/img/user3-128x128.jpg" alt="User Image">
-                                    <a class="users-list-name" href="#">Nadia</a>
-                                </li>
-                            </ul>
-                            <!-- /.users-list -->
-                        </div>
-                    </div>
-                </div>
+{{--                <div class="col-md-4">--}}
+{{--                    <!-- USERS LIST -->--}}
+{{--                    <div class="box box-danger">--}}
+{{--                        <!-- /.box-header -->--}}
+{{--                        <div class="box-body no-padding">--}}
+{{--                            <ul class="users-list clearfix">--}}
+{{--                                <li>--}}
+{{--                                    <img src="dist/img/user1-128x128.jpg" alt="User Image">--}}
+{{--                                    <a class="users-list-name" href="#">Alexander Pierce</a>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <img src="dist/img/user8-128x128.jpg" alt="User Image">--}}
+{{--                                    <a class="users-list-name" href="#">Norman</a>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <img src="dist/img/user7-128x128.jpg" alt="User Image">--}}
+{{--                                    <a class="users-list-name" href="#">Jane</a>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <img src="dist/img/user6-128x128.jpg" alt="User Image">--}}
+{{--                                    <a class="users-list-name" href="#">John</a>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <img src="dist/img/user2-160x160.jpg" alt="User Image">--}}
+{{--                                    <a class="users-list-name" href="#">Alexander</a>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <img src="dist/img/user5-128x128.jpg" alt="User Image">--}}
+{{--                                    <a class="users-list-name" href="#">Sarah</a>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <img src="dist/img/user4-128x128.jpg" alt="User Image">--}}
+{{--                                    <a class="users-list-name" href="#">Nora</a>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <img src="dist/img/user3-128x128.jpg" alt="User Image">--}}
+{{--                                    <a class="users-list-name" href="#">Nadia</a>--}}
+{{--                                </li>--}}
+{{--                            </ul>--}}
+{{--                            <!-- /.users-list -->--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
             </div>
         </div>
     </section>
