@@ -8,34 +8,37 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="modal_attivita_title">Titolo*:</label>
-                            <input type="text" id="modal_attivita_title" class="form-control" placeholder="titolo ...">
+                <form>
+                    <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}" />
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="modal_attivita_title">Titolo*:</label>
+                                <input type="text" id="modal_attivita_title" class="form-control" placeholder="titolo ...">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="modal_attivita_fsn">Fsn*:</label>
+                                <select class="form-control" id="modal_attivita_fsn"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="modal_attivita_utente">Utente*:</label>
+                                <select id="modal_attivita_utente" class="form-control"></select>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="modal_attivita_fsn">Fsn*:</label>
-                            <select class="form-control" id="modal_attivita_fsn"></select>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="modal_attivita_descr">Descrizione:</label>
+                                <textarea class="form-control" id="modal_attivita_descr" rows="3" placeholder="descrizione ..."></textarea>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="modal_attivita_utente">Utente*:</label>
-                            <select id="modal_attivita_utente" class="form-control"></select>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="form-group">
-                            <label for="modal_attivita_descr">Descrizione:</label>
-                            <textarea class="form-control" id="modal_attivita_descr" rows="3" placeholder="descrizione ..."></textarea>
-                        </div>
-                    </div>
-                </div>
+                </form>
             </div>
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-default pull-left" data-dismiss="modal">chiudi</button>

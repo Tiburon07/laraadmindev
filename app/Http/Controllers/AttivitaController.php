@@ -6,6 +6,7 @@ use App\Models\Attivita;
 use App\Models\Federazione;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class AttivitaController extends Controller
 {
@@ -15,17 +16,11 @@ class AttivitaController extends Controller
         $this->attivitaModel = new Attivita();
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index(Request $req) {
         $attivita = $this->attivitaModel::all();
         return view('attivita/attivita',['attivita' => $attivita, 'view' => 'attivita_view']);
 
     }
-
 
     public function getAttivita(int $start, int $length,int $column, $dir, $search){
         $result = ['data' => [], 'statusCode' => 200, 'message' => ''];
@@ -46,74 +41,8 @@ class AttivitaController extends Controller
         return json_encode($result);
     }
 
-    public function assegna()
-    {
-
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create(Request $req)
-    {
-        dd($req->getContent());
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Attivita  $attivita
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Attivita $attivita)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Attivita  $attivita
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Attivita $attivita)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Attivita  $attivita
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Attivita $attivita)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Attivita  $attivita
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Attivita $attivita)
-    {
-        //
+    public function assegna(Request $req){
+        $res = $this->attivitaModel->storeAttivita($req->all());
+        return response()->json($res);
     }
 }

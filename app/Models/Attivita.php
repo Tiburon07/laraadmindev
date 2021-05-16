@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 /**
  * App\Models\Attivita
@@ -54,5 +54,29 @@ class Attivita extends Model
                     FROM 01_attivita
                     where title like '%$search%'";
         return DB::selectOne($sql)->count;
+    }
+
+    public function storeAttivita($attivita){
+        $data['title'] = $attivita['title'];
+        $data['fsn'] = $attivita['fsn'];
+        $data['description'] = $attivita['descr'];
+        $data['user_id'] = $attivita['user_id'];
+        $data['status_id'] = 1;
+        $data['created_at'] = date('Y-m-d H:i:s');
+        $query = " insert into 01_attivita (
+                          title,
+                          fsn,
+                          description,
+                          user_id,
+                          status_id,
+                          created_at)
+                   values (
+                           :title,
+                           :fsn,
+                           :description,
+                           :user_id,
+                           :status_id,
+                           :created_at)";
+        return DB::insert($query, $data);
     }
 }

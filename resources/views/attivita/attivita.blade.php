@@ -56,9 +56,9 @@
                             <div class="card-header">
                                 <h3 class="card-title"><i class="fas fa-tasks"></i> Task</h3>
                                 <div class="card-tools">
-                                    <button type="button" class="btn btn-tool" id="attivita_btn_new_task" title="Aggiungi Task">
-                                        <i class="fas fa-plus"></i>
-                                    </button>
+{{--                                    <button type="button" class="btn btn-tool" id="attivita_btn_new_task" title="Aggiungi Task">--}}
+{{--                                        <i class="fas fa-plus"></i>--}}
+{{--                                    </button>--}}
                                 </div>
                             </div>
                             <div class="card-body">
@@ -71,9 +71,9 @@
                             <div class="card-header">
                                 <h3 class="card-title"><i class="fas fa-bookmark"></i> Bookmark</h3>
                                 <div class="card-tools">
-                                    <button type="button" class="btn btn-tool" id="attivita_btn_bookmark" title="Aggiungi bookmark">
-                                        <i class="fas fa-plus"></i>
-                                    </button>
+{{--                                    <button type="button" class="btn btn-tool" id="attivita_btn_bookmark" title="Aggiungi bookmark">--}}
+{{--                                        <i class="fas fa-plus"></i>--}}
+{{--                                    </button>--}}
                                 </div>
                             </div>
                             <div class="card-body">
@@ -92,6 +92,7 @@
 
 @include('components.modal')
 @include('attivita.components._modalAttivita')
+@include('attivita.components._modalInfoTpl')
 @endsection
 
 @section('extra_js')

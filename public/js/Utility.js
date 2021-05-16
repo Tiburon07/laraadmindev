@@ -1474,5 +1474,31 @@ const Utility = {
           .append($('<i class="fa fa-trash-o"></i>'))
         );
     return liTask
+  },
+
+  getStatusLabel: function(statusCode) {
+      let statusLabel = '';
+      let todo = '<span class="badge  bg-danger">TODO</span>';
+      let doing = '<span class="badge bg-warning">DOING</span>';
+      let completed = '<span class="badge bg-success">COMPLETATO</span>';
+      let deployed = '<span class="badge bg-primary">RILASCIATO</span>';
+      let notDefined = '<span class="badge bg-default">NON DEFINITO</span>';
+      switch (statusCode){
+          case 1:
+              statusLabel = todo;
+              break;
+          case 2:
+              statusLabel = doing;
+              break
+          case 3:
+              statusLabel = completed;
+              break
+          case 4:
+              statusLabel = deployed;
+              break
+          default:
+              statusLabel = notDefined;
+      }
+      return statusLabel;
   }
 }

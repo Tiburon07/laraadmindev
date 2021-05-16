@@ -28,6 +28,7 @@
     this._btnNewTask = $('#attivita_btn_new_task');
     this._btnNewBookmark = $('#attivita_btn_new_bookmark');
     this._ulTask = $('#attivita_task_ul');
+    this._token = $('#_token');
 
     // -- Eventi
     this._btnNewAttivita.on('click', this._onclickBtnNewAttivita.bind(this));
@@ -38,6 +39,7 @@
     this._tableConfigAttivita = this._utility.getTableConfig();
     this._tableConfigAttivita.buttons = ['excel', 'pdf'];
     this._tableConfigAttivita.serverSide = true;
+    this._tableConfigAttivita.language.search = 'Cerca per titolo:';
     this._tableConfigAttivita.ajax = this._getElencoAttivita.bind(this);
     this._tableConfigAttivita.destroy = true;
     this._tableConfigAttivita.paging = true;
@@ -67,16 +69,18 @@
         data: "status_id",
         className: "text-center",
         render: function (data, type, row, meta) {
-            return data;
+            return _this._utility.getStatusLabel(data);
         }
     },{
         data: "action",
         className: "text-center",
         render: function (data, type, row, meta) {
-            let btnEdit = '<button class="btn btn-sm mr-1 btn-primary"><i class="far fa-edit"></i></button>';
-            let btnDel = '<button '+ ((row.deleted_at) ? ' disabled ' : '') + ' class="btn mr-1 btn-sm btn-danger"><i class="far fa-trash-alt"></i></button>';
+            let btnTask = '<button data-action="task_bookmark" class="btn btn-sm mr-1 btn-primary" title="nuovo ask"><i class="fas fa-tasks"></i></button>';
+            let btnBook = '<button data-action="task_bookmark" class="btn btn-sm mr-1 btn-primary" title="nuovo bookmark"><i class="fas fa-bookmark"></i></button>';
+            let btnCarica = '<button data-action="carica_task_book" class="btn btn-sm mr-1 btn-primary" title="carica task e bookmark"><i class="fas fa-eye"></i></button>';
+            //let btnDel = '<button '+ ((row.deleted_at) ? ' disabled ' : '') + ' class="btn mr-1 btn-sm btn-danger"><i class="far fa-trash-alt"></i></button>';
             // let btnForceDel = '<button class="btn btn-sm mr-1 btn-danger">Force <i class="far fa-trash-alt"></button>';
-            return btnEdit + btnDel ;
+            return btnTask + btnBook + btnCarica;
         }
     }];
 
@@ -84,10 +88,10 @@
     this._tableConfigAttivita.columnDefs = [
         { title:'Titolo', "targets": 0, "width": "15%", orderable: true },
         { title:'FSN', "targets": 1, "width": "5%", orderable: true },
-        { title:'Descrizione', "targets": 2, "width": "30%", orderable: true },
+        { title:'Descrizione', "targets": 2, "width": "45%", orderable: true },
         { title:'Data Inserimento', "targets": 3, "width": "15%", orderable: true },
-        { title:'Stato', "targets": 4, "width": "10%", orderable: true },
-        { title:'Azioni', "targets": 5, "width": "25%", orderable: false}];
+        { title:'Stato', "targets": 4, "width": "5%", orderable: true },
+        { title:'Azioni', "targets": 5, "width": "15%", orderable: false}];
 
     this._attivitaTable.DataTable(this._tableConfigAttivita)
     // .columns().every( function () {
@@ -131,9 +135,9 @@
 
   };
 
-    ns.AttivitaList.prototype._onSuccessAssegna = function(e) {
-        alert('assegnato');
-    };
+  ns.AttivitaList.prototype._onSuccessAssegna = function(e) {
+      alert('assegnato');
+  };
 
   // -- Handler Event
   ns.AttivitaList.prototype._getElencoAttivita = function (data, callbackDataTable){
@@ -141,4 +145,8 @@
       let url = G_baseUrl + '/attivita/getAttivita/' + data.start + '/' + data.length + '/' + (data.order[0].column + 1) + '/' + data.order[0].dir + '/' + search;
       this._utility.request(url, this._utility.onSuccessDataTable.bind(this,data.draw,callbackDataTable), 'elenco_attivita', 'GET');
   };
+
+    ns.AttivitaList.prototype.refresh = function(e) {
+        this._attivitaTable.DataTable().ajax.reload();
+    };
 })();
