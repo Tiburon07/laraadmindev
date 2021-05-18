@@ -52,7 +52,7 @@
     this._tableConfigAttivita.destroy = true;
     this._tableConfigAttivita.paging = true;
     this._tableConfigAttivita.pageLength = 15;
-    this._tableConfigAttivita.order = [[1,'asc']];
+    this._tableConfigAttivita.order = [[4,'desc']];
     this._tableConfigAttivita.columns = [{
         data: "title",
         className: "text-center",
@@ -168,7 +168,18 @@
   // -- Handler Event
   ns.AttivitaList.prototype._getElencoAttivita = function (data, callbackDataTable){
       let search = (data.search.value) ? data.search.value : '*';
-      let url = G_baseUrl + '/attivita/getAttivita/' + data.start + '/' + data.length + '/' + (data.order[0].column + 1) + '/' + data.order[0].dir + '/' + search;
+      let nCol = data.order[0].column + 1;
+      //Mappo le colonne nella tabella
+      if(nCol == 1){
+          nCol = 2;
+      }else if(nCol == 2){
+          nCol = 3;
+      }else if(nCol == 3){
+          nCol = 4;
+      }else if(nCol == 4){
+          nCol = 5;
+      }
+      let url = G_baseUrl + '/attivita/getAttivita/' + data.start + '/' + data.length + '/' + nCol + '/' + data.order[0].dir + '/' + search;
       this._utility.request(url, this._utility.onSuccessDataTable.bind(this,data.draw,callbackDataTable), 'elenco_attivita', 'GET');
   };
 
