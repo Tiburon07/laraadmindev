@@ -21,6 +21,9 @@
     this._users = [];
     this._modalAttivita = new ns.ModalNewAttivita();
     this._modal = this._modalAttivita.getModale();
+    this._descrAttivita = '';
+    this._titleAttivita = '';
+    this._fsnAttivita = '';
 
     // -- elementi HTML --
     this._attivitaTable = $('#attivita_table')
@@ -29,10 +32,16 @@
     this._btnNewBookmark = $('#attivita_btn_new_bookmark');
     this._ulTask = $('#attivita_task_ul');
     this._token = $('#_token');
+    this._containerTableAttivita = $('#container_table_attivita');
+    this._containerDetailAttivita = $('#container_detail_attivita');
+    this._h4DetailAttivita = $('#title_detail_attivita');
+    this._pDetailAttivita = $('#descr_detail_atttivita');
+    this._tornaLista = $('#torna_lista_attivita');
 
     // -- Eventi
     this._btnNewAttivita.on('click', this._onclickBtnNewAttivita.bind(this));
     this._attivitaTable.on('click','button',this._onClickAction.bind(this));
+    this._tornaLista.on('click',this.hideDetail.bind(this));
 
     // -- Table Users Config
     this._tableConfigAttivita = this._utility.getTableConfig();
@@ -56,7 +65,7 @@
         data: "description",
         className: "text-center",
         render: function (data, type, row, meta) {
-            return data;
+            return data.substring(0,200)+' ...';
         }
     }, {
         data: "created_at",
@@ -74,12 +83,12 @@
         data: "action",
         className: "text-center",
         render: function (data, type, row, meta) {
-            let btnTask = '<button data-action="task" class="btn btn-sm mr-1 btn-primary" title="nuovo ask"><i class="fas fa-tasks"></i></button>';
-            let btnBook = '<button data-action="bookmark" class="btn btn-sm mr-1 btn-primary" title="nuovo bookmark"><i class="fas fa-bookmark"></i></button>';
-            let btnCarica = '<button data-action="carica_task_book" class="btn btn-sm mr-1 btn-primary" title="carica task e bookmark"><i class="fas fa-eye"></i></button>';
+            //let btnTask = '<button data-action="task" class="btn btn-sm mr-1 btn-primary" title="nuovo ask"><i class="fas fa-tasks"></i></button>';
+            //let btnBook = '<button data-action="bookmark" class="btn btn-sm mr-1 btn-primary" title="nuovo bookmark"><i class="fas fa-bookmark"></i></button>';
+            let btnDettaglio = '<button data-action="carica_task_book" class="btn btn-sm mr-1 btn-primary" title="Mostra task e bookmark"><i class="fas fa-arrow-down"></i></button>';
             //let btnDel = '<button '+ ((row.deleted_at) ? ' disabled ' : '') + ' class="btn mr-1 btn-sm btn-danger"><i class="far fa-trash-alt"></i></button>';
             // let btnForceDel = '<button class="btn btn-sm mr-1 btn-danger">Force <i class="far fa-trash-alt"></button>';
-            return btnTask + btnBook + btnCarica;
+            return btnDettaglio;
         }
     }];
 
@@ -128,7 +137,9 @@
 
   ns.AttivitaList.prototype._onClickAction = function(e) {
       let rowData = this._attivitaTable.DataTable().row($(e.target).parents('tr')).data();
-      console.log(rowData);
+      this._descrAttivita = rowData.description;
+      this._titleAttivita = rowData.title;
+      this._fsnAttivita = rowData.fsn;
       switch (e.currentTarget.dataset.action) {
           case 'task':
                 alert('da implementare');
@@ -137,7 +148,7 @@
               alert('da implementare');
               break;
           case 'carica_task_book':
-              this._getActionBookMark(rowData);
+              this._getActionDetail(rowData);
               break;
           default:
               break;
@@ -165,7 +176,7 @@
         this._attivitaTable.DataTable().ajax.reload();
     };
 
-    ns.AttivitaList.prototype._getActionBookMark = function(data){
+    ns.AttivitaList.prototype._getActionDetail = function(data){
         const options = {
             method: 'get',
             url: G_baseUrl + '/attivita/getTaskBookmark/' + data.id,
@@ -180,7 +191,7 @@
                 for(let i in tasks){
                     ulTask.append(Utility.getTask(tasks[i]))
                 }
-                // admindev.attivita.AttivitaList.getInstance().refresh();
+                   admindev.attivita.AttivitaList.getInstance().showDetail();
                 // admindev.attivita.ModalNewAttivita.getInstance().hide();
             }
         ).catch(err => {
@@ -192,5 +203,21 @@
 
     ns.AttivitaList.prototype.getTaskContainer = function() {
         return this._ulTask;
+    };
+
+    ns.AttivitaList.prototype.showDetail = function() {
+        this._caricaDetailAttivita();
+        this._containerTableAttivita.collapse('hide');
+        this._containerDetailAttivita.collapse('show');
+    };
+
+    ns.AttivitaList.prototype.hideDetail = function(e) {
+        this._containerDetailAttivita.collapse('hide');
+        this._containerTableAttivita.collapse('show');
+    };
+
+    ns.AttivitaList.prototype._caricaDetailAttivita = function(e) {
+        this._h4DetailAttivita.html(this._fsnAttivita+' - ' +this._titleAttivita);
+        this._pDetailAttivita.html(this._descrAttivita);
     };
 })();

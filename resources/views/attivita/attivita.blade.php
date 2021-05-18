@@ -24,7 +24,7 @@
 
         <section class="content">
             <div class="container-fluid">
-                <div class="row">
+                <div id="container_table_attivita" class="row collapse show">
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
@@ -50,36 +50,42 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title"><i class="fas fa-tasks"></i> Task</h3>
-                                <div class="card-tools">
-{{--                                    <button type="button" class="btn btn-tool" id="attivita_btn_new_task" title="Aggiungi Task">--}}
-{{--                                        <i class="fas fa-plus"></i>--}}
-{{--                                    </button>--}}
+
+                <div id="container_detail_attivita" class="collapse hide">
+                    <a id="torna_lista_attivita" href="#"><i class="fas fa-arrow-up"></i> Torna alla lista</a>
+                    <h4 id="title_detail_attivita"></h4>
+                    <p id="descr_detail_atttivita"></p>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title"><i class="fas fa-tasks"></i> Task</h3>
+                                    <div class="card-tools">
+    {{--                                    <button type="button" class="btn btn-tool" id="attivita_btn_new_task" title="Aggiungi Task">--}}
+    {{--                                        <i class="fas fa-plus"></i>--}}
+    {{--                                    </button>--}}
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="card-body">
-                                <ul id="attivita_task_ul" class="todo-list" data-widget="todo-list"></ul>
+                                <div class="card-body">
+                                    <ul id="attivita_task_ul" class="todo-list" data-widget="todo-list"></ul>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title"><i class="fas fa-bookmark"></i> Bookmark</h3>
-                                <div class="card-tools">
-{{--                                    <button type="button" class="btn btn-tool" id="attivita_btn_bookmark" title="Aggiungi bookmark">--}}
-{{--                                        <i class="fas fa-plus"></i>--}}
-{{--                                    </button>--}}
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title"><i class="fas fa-bookmark"></i> Bookmark</h3>
+                                    <div class="card-tools">
+    {{--                                    <button type="button" class="btn btn-tool" id="attivita_btn_bookmark" title="Aggiungi bookmark">--}}
+    {{--                                        <i class="fas fa-plus"></i>--}}
+    {{--                                    </button>--}}
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="timeline"></div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="timeline"></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
