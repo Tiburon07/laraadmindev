@@ -50,7 +50,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div id="container_detail_attivita" class="collapse hide">
                     <a id="torna_lista_attivita" href="#"><i class="fas fa-arrow-up"></i> Torna alla lista</a>
                     <h4 id="title_detail_attivita"></h4>
@@ -61,9 +60,9 @@
                                 <div class="card-header">
                                     <h3 class="card-title"><i class="fas fa-tasks"></i> Task</h3>
                                     <div class="card-tools">
-    {{--                                    <button type="button" class="btn btn-tool" id="attivita_btn_new_task" title="Aggiungi Task">--}}
-    {{--                                        <i class="fas fa-plus"></i>--}}
-    {{--                                    </button>--}}
+                                        <button type="button" class="btn btn-tool" id="attivita_btn_new_task" title="Aggiungi Task">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
                                     </div>
                                 </div>
                                 <div class="card-body">
@@ -76,9 +75,9 @@
                                 <div class="card-header">
                                     <h3 class="card-title"><i class="fas fa-bookmark"></i> Bookmark</h3>
                                     <div class="card-tools">
-    {{--                                    <button type="button" class="btn btn-tool" id="attivita_btn_bookmark" title="Aggiungi bookmark">--}}
-    {{--                                        <i class="fas fa-plus"></i>--}}
-    {{--                                    </button>--}}
+                                        <button type="button" class="btn btn-tool" id="attivita_btn_bookmark" title="Aggiungi bookmark">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
                                     </div>
                                 </div>
                                 <div class="card-body">
