@@ -50,7 +50,9 @@
                         '    <div class="direct-chat-text">'+e.message+'</div>\n' +
                         '</div>')
                 }
+            _this._scrollBottomChat()
             });
+        this._scrollBottomChat();
     };
 
     ns.Chat.getInstance = function() {
@@ -73,6 +75,10 @@
         }
         axios(options);
         this._inpMes.val('');
+    };
+
+    ns.Chat.prototype._scrollBottomChat = function() {
+        this._chatContent.scrollTop(1000000000000)
     };
 
 })();
