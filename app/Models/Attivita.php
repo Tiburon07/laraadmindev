@@ -40,6 +40,7 @@ class Attivita extends Model
 
     public function getAttivita($start,$length,$column,$dir,$search){
         $search = ($search === '*') ? '' : $search;
+        if($column == 5) $column = 'DATE(created_at)';
         $sql = "SELECT  id, title, description, '' as action, DATE_FORMAT(created_at, '%d/%m/%Y %H:%i:%s') as created_at, status_id, fsn
                     FROM 01_attivita
                     where title like '%$search%'
